@@ -23,6 +23,6 @@ Ports can be changed at application.properties of all the services.
 
 ### Architecture Diagram :  
 
-![TurvoDB](https://github.com/preetpramati/TurvoDemo/blob/master/Architecture.pdf)
+![Microservice Architecture](https://github.com/preetpramati/TurvoDemo/blob/master/Architecture.pdf)
 
 
