@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fk.dto.OrderDTO;
-import com.fk.service.OrderService;
+import com.fk.service.IOrderService;
 
 
 
@@ -15,14 +15,14 @@ import com.fk.service.OrderService;
 public class OrderController {
 	
 	@Autowired
-	OrderService orderService;
+	IOrderService orderService;
 	
 	@RequestMapping(value="/order", method = RequestMethod.POST)
-    public Boolean validate(@RequestBody OrderDTO order) {
+    public OrderDTO validate(@RequestBody OrderDTO order) {
 	 
-	 Boolean isValid = orderService.validate(order);
+		OrderDTO response = orderService.makeOrder(order);
 	 
-      return isValid;
+      return response;
     }
 
 }

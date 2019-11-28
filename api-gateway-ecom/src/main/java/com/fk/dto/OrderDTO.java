@@ -8,6 +8,8 @@ public class OrderDTO {
 	Long memberId;
 	String token;
 	Long productId;
+	String description;
+	Integer status;
 	
 	public Long getMemberId() {
 		return memberId;
@@ -26,6 +28,18 @@ public class OrderDTO {
 	}
 	public void setProductId(Long productId) {
 		this.productId = productId;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 	
 }

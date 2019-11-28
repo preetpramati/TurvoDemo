@@ -10,21 +10,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fk.dto.ProductDTO;
-import com.fk.service.InventoryService;
+import com.fk.dto.ProductListResponseDTO;
+import com.fk.service.IInventoryService;
 
 @RestController
 public class InventoryController {
 	
 	
 	@Autowired
-	InventoryService inventoryService;
+	IInventoryService inventoryService;
 
 	
-	 
-	 @RequestMapping(value="/getProducts", method = RequestMethod.GET )
-	    public List<ProductDTO> getMember() {
-		 
-		 return inventoryService.getAllProducts();
+	 @RequestMapping(value="/getProducts/{memberid}", method = RequestMethod.GET )
+	    public ProductListResponseDTO getMember(@PathVariable("memberid") Long id) {
+		 ProductListResponseDTO response = inventoryService.getAllProducts(id);
+		 return response;
 		 
 	    }
 }

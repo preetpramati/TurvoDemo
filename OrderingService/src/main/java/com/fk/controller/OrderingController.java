@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.fk.dto.OrderDTO;
 import com.fk.dto.OrderResponseDTO;
-import com.fk.service.OrderService;
+import com.fk.service.IOrderService;
 
 
 @Controller
 public class OrderingController {
 
 	@Autowired
-	OrderService orderService;
+	IOrderService orderService;
 	
 	@RequestMapping(value="/order", method = RequestMethod.POST)
     public OrderResponseDTO validate(@RequestBody OrderDTO order) {

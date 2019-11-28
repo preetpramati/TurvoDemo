@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fk.dto.LoginDTO;
 import com.fk.dto.MemberDTO;
-import com.fk.service.LoginService;
+import com.fk.service.ILoginService;
 
 @RestController
 public class LoginController {
 	
 	
 	@Autowired
-	LoginService loginService;
+	ILoginService loginService;
 
 	 @RequestMapping(value="/login", method = RequestMethod.POST)
 	    public MemberDTO login(@RequestBody LoginDTO loginDTO) {
