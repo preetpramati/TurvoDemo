@@ -44,6 +44,7 @@ POST : http://api-gateway-service:8081/order - Entry point for user into the sys
 ## DB Scripts :
 
 Oauth DB:
+
 CREATE TABLE `MemberLogin` (
   `memberid` int(6) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL,
@@ -55,6 +56,7 @@ CREATE TABLE `MemberLogin` (
 )
 
 Inventory DB:
+
 CREATE TABLE `InventoryList` (
   `id` int(6) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
@@ -65,6 +67,7 @@ CREATE TABLE `InventoryList` (
 )
 
 Shipping DB:
+
 CREATE TABLE `ShippingOrders` (
   `id` int(6) unsigned NOT NULL AUTO_INCREMENT,
   `memberid` int(6) NOT NULL,
