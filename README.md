@@ -41,4 +41,38 @@ PUT : http://ordering-service:8085/order - Allows a registered user to place ord
 POST : http://api-gateway-service:8081/order - Entry point for user into the systme to make order
 
 
+## DB Scripts :
+
+Oauth DB:
+CREATE TABLE `MemberLogin` (
+  `memberid` int(6) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(30) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  `token` varchar(250) DEFAULT NULL,
+  `expiry` TIMESTAMP DEFAULT NULL,
+  `isRegistered` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`memberid`)
+)
+
+Inventory DB:
+CREATE TABLE `InventoryList` (
+  `id` int(6) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) NOT NULL,
+  `description` varchar(3000) NOT NULL,
+  `s3URL` varchar(250) DEFAULT NULL,
+  `availableCount` int(6) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+)
+
+Shipping DB:
+CREATE TABLE `ShippingOrders` (
+  `id` int(6) unsigned NOT NULL AUTO_INCREMENT,
+  `memberid` int(6) NOT NULL,
+  `productid` int(6)  NOT NULL,
+  `status`   tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+)
+
+
+
 
