@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oauth-mysql
+spec:
+  selector:
+    matchLabels:
+      app: oauth-mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: oauth-mysql
+    spec:
+      containers:
+      - image: mysql:5
+        name: oauth-mysql
+        env:
+           # Use secret in real life
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: MYSQL_ROOT_PASSWORD
+        - name: MYSQL_DATABASE
+          value: authdb
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim
+
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: oauth-database-service
+spec:
+  selector:
+    app: oauth-mysql
+  ports:
+  - port: 3306
+  type: ClusterIP

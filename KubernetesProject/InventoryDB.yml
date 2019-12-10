@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventory-mysql
+spec:
+  selector:
+    matchLabels:
+      app: inventory-mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: inventory-mysql
+    spec:
+      containers:
+      - image: mysql:5
+        name: inventory-mysql
+        env:
+           # Use secret in real life
+        - name: MYSQL_ROOT_PASSWORD
+          value: password
+        - name: MYSQL_DATABASE
+          value: inventorydb
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim
+
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: inventory-database-service
+spec:
+  selector:
+    app: inventory-mysql
+  ports:
+  - port: 3306
+  type: ClusterIP

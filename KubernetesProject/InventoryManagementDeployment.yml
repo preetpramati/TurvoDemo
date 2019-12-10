@@ -1,0 +1,40 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: inventory-management-service
+spec:
+  selector:
+    app: inventory-management-service
+  ports:
+  - protocol: TCP
+    port: 8082
+    targetPort: 8080
+  type: ClusterIP
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventory-management-deployment
+spec:
+  selector:
+      matchLabels:
+        app: inventory-management-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: inventory-management-service
+    spec:
+      containers:
+        - name: inventory-management-deployment
+          image: inventory-management-service:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          #resources:
+            #requests:
+              #cpu: 10m  
+            
+           
+    

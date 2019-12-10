@@ -1,0 +1,32 @@
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: fk-routing
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+
+spec:
+  rules:
+  - host: pramatikart.com
+    http:
+      paths:
+      - path: /auth(/|$)(.*)
+        backend:
+          serviceName: oauth-service
+          servicePort: 9090
+  - host: pramatikart.com
+    http:
+      paths:
+      - path: /inventory(/|$)(.*)
+        backend:
+          serviceName: inventory-management-service
+          servicePort: 8080
+  - host: pramatikart.com
+    http:
+      paths:
+      - path: /order(/|$)(.*)
+        backend:
+          serviceName: api-gateway-service
+          servicePort: 8080
+

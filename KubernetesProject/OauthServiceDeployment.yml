@@ -1,0 +1,40 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: oauth-service
+spec:
+  selector:
+    app: oauth-service
+  ports:
+  - protocol: TCP
+    port: 8084
+    targetPort: 9090
+  type: ClusterIP
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oauth-service-deployment
+spec:
+  selector:
+      matchLabels:
+        app: oauth-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: oauth-service
+    spec:
+      containers:
+        - name: oauth-service-deployment
+          image: oauth-service:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 9090
+          #resources:
+            #requests:
+              #cpu: 10m  
+            
+           
+    

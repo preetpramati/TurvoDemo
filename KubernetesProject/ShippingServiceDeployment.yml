@@ -1,0 +1,40 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: shipping-service
+spec:
+  selector:
+    app: shipping-service
+  ports:
+  - protocol: TCP
+    port: 8086
+    targetPort: 8080
+  type: ClusterIP
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shipping-service-deployment
+spec:
+  selector:
+      matchLabels:
+        app: shipping-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: shipping-service
+    spec:
+      containers:
+        - name: shipping-service-deployment
+          image: shipping-service:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          #resources:
+            #requests:
+              #cpu: 10m  
+            
+           
+    
