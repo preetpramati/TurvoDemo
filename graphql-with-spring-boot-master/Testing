@@ -1,0 +1,25 @@
+http://localhost:8080/graphiql
+
+query {
+  vehicles(count: 1) 
+  {
+    id, 
+    type, 
+    modelCode
+}
+}
+
+
+
+
+POSTMAN:
+POST
+JSON
+http://localhost:8080/graphql
+{
+"query": "{ vehicles(count: 1) { id, type, modelCode}}"
+}
+
+
+Data:
+CREATE (ecosport:Vehicle {id: 1, type: 'MUV',  modelCode: 'eco1', brandName: 'Ford', launchDate: '2018'})
