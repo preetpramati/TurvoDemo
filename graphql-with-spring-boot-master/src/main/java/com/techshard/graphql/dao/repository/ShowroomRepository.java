@@ -9,11 +9,7 @@ import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface VehicleRepository extends Neo4jRepository<Vehicle, Integer> {
-
-	List<Vehicle> findByBrandName(String brandName);
-
-	List<Vehicle> findByBrandNameAndModelCode(String brandName, String modelCode);
+public interface ShowroomRepository extends Neo4jRepository<Vehicle, Integer> {
 	
 	
 }

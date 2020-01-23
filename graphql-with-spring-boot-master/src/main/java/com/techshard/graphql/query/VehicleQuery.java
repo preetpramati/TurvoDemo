@@ -19,7 +19,16 @@ public class VehicleQuery implements GraphQLQueryResolver {
         return this.vehicleService.getAllVehicles(count);
     }
 
-    public Optional<Vehicle> getVehicle(final int id) {
+    public Optional<Vehicle> getVehicle( int id) {
         return this.vehicleService.getVehicle(id);
+    }
+    
+    public List<Vehicle> getVehiclebybrandname( String brandName) {
+        return this.vehicleService.getVehicleByBrandName(brandName);
+    }
+    
+    
+    public List<Vehicle> getVehiclebybrandnameandmodelCode( String brandName, String modelCode) {
+        return this.vehicleService.getVehicleByBrandNameAndModelCode(brandName,modelCode);
     }
 }

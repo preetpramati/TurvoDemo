@@ -1,5 +1,6 @@
 package com.techshard.graphql.service;
 
+import com.techshard.graphql.dao.entity.Showroom;
 import com.techshard.graphql.dao.entity.Vehicle;
 import com.techshard.graphql.dao.repository.VehicleRepository;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,7 @@ public class VehicleService {
         vehicle.setModelCode(modelCode);
         vehicle.setBrandName(brandName);
         vehicle.setLaunchDate(launchDate);
+        
         return this.vehicleRepository.save(vehicle);
     }
 
@@ -39,4 +41,13 @@ public class VehicleService {
     public Optional<Vehicle> getVehicle(final int id) {
         return this.vehicleRepository.findById(id);
     }
+    
+    @Transactional(readOnly = true)
+    public List<Vehicle> getVehicleByBrandName(String brandName) {
+        return this.vehicleRepository.findByBrandName(brandName);
+    }
+
+	public List<Vehicle> getVehicleByBrandNameAndModelCode(String brandName, String modelCode) {
+		 return this.vehicleRepository.findByBrandNameAndModelCode(brandName, modelCode);
+	}
 }

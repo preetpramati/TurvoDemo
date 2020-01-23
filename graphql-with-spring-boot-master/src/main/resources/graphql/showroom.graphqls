@@ -1,0 +1,10 @@
+type Showroom {
+	showRoomID: ID!,
+	name: String,
+	company: String,
+	location: String
+}
+
+type Query {
+	showrooms(count: Int):[Showroom]
+}

@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -28,8 +29,9 @@ public class Vehicle implements Serializable {
     private String brandName;
 
     private String launchDate;
-
-    private transient  String formattedDate;
+    
+    @Relationship(type="sold_at", direction=Relationship.OUTGOING)
+    private Showroom showroom;
 
     // Getter and setter
     public String getFormattedDate() {
@@ -80,9 +82,12 @@ public class Vehicle implements Serializable {
 		return serialVersionUID;
 	}
 
-	public void setFormattedDate(String formattedDate) {
-		this.formattedDate = formattedDate;
+	public Showroom getShowroom() {
+		return showroom;
 	}
 
-	
+	public void setShowroom(Showroom showroom) {
+		this.showroom = showroom;
+	}
+
 }

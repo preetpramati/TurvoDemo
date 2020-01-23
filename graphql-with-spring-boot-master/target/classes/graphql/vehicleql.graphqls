@@ -3,14 +3,18 @@ type Vehicle {
 	type: String,
 	modelCode: String,
 	brandName: String,
-	launchDate: String
+	launchDate: String,
+	showroom: Showroom
 }
 
 type Query {
 	vehicles(count: Int):[Vehicle]
-	vehicle(id: ID):Vehicle
+	vehicle(id: Long):Vehicle
+	vehiclebybrandname(brandName: String):[Vehicle]
+	vehiclebybrandnameandmodelCode(brandName: String, modelCode: String):[Vehicle]
 }
 
 type Mutation {
 	createVehicle(type: String!, modelCode: String!, brandName: String, launchDate: String):Vehicle
 }
+

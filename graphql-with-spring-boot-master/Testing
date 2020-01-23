@@ -9,6 +9,19 @@ query {
 }
 }
 
+query {
+  vehiclebybrandname(brandName: "Ford") 
+  {
+    id
+    type
+    modelCode
+    brandName
+    showroom {
+            name
+            location
+        }
+}
+}
 
 
 
@@ -21,5 +34,3 @@ http://localhost:8080/graphql
 }
 
 
-Data:
-CREATE (ecosport:Vehicle {id: 1, type: 'MUV',  modelCode: 'eco1', brandName: 'Ford', launchDate: '2018'})
